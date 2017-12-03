@@ -13,7 +13,10 @@ for line in open(args[1], 'r'):
 	ua = {'User-Agent': USER_AGENT}
 	res = requests.get(url, headers=ua)
 	soup = BeautifulSoup(res.content, 'html.parser')
-	js = soup.body.find("div",attrs={"class":"site-layout__main-content"}).script.text
+	
+	# set target
+	js = soup.body.find("div",attrs={"class":"xxx"}).script.text
+	
 	data = js[js.find("({")+1:js.rfind("})")+1];
 	jsn = json.loads(data);
-	print(jsn["dateEnabled"]);
+	print(jsn);
